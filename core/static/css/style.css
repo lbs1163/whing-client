@@ -81,6 +81,31 @@ span.circled-number {
 	margin-bottom: 20px;
 }
 
+.flap-btn {
+	display: inline-block;
+	margin-right: 10px;
+	padding: 4px;
+	border-radius: 100%;
+	border: 1px solid #6534FF;
+	height: 26px;
+}
+
+.flap-btn img {
+	width: 16px;
+	height: 16px;
+	margin: 0 !important;
+}
+
+.flap-btn.flap-btn-large {
+	padding: 15px;
+	height: 62px;
+}
+
+.flap-btn.flap-btn-large img {
+	width: 30px;
+	height: 30px;
+}
+
 nav.white .brand-logo, nav.white ul a, nav i, nav {
 	color: #464646;
 }
@@ -379,31 +404,36 @@ nav ul.right i {
 	padding-right: 5px;
 }
 
-.article .article-info-footer img {
+.article-info-detail img {
 	width: 24px;
 	height: 24px;
 }
 
-.article .article-info-footer i {
+.article-info-detail i {
 	border-radius: 100%;
 	border: 1px solid #6534FF;
 	color: #6534FF;
-	padding: 0;
+	padding: 0 !important;
 	margin-right: 5px;
 }
 
-.article .article-info-footer .article-info-detail {
+.article-info-detail {
 	display: inline-block;
 	margin-right: 10px;
 	border-right: 1px solid #e0e0e0;
 	padding: 0 5px;
 }
 
-.article .article-info-footer .article-info-detail:first-child {
+.article-info-detail > * {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.article-info-detail:first-child {
 	padding-left: 0;
 }
 
-.article .article-info-footer .article-info-detail:last-child {
+.article-info-detail:last-child {
 	border-right: none;
 	padding-right: 0;
 }
@@ -417,6 +447,17 @@ nav ul.right i {
 		font-size: 16px;
 		line-height: 22px;
 		text-align: left;
+	}
+
+	.article-modal h3 {
+		font-size: 20px !important;
+		line-height: 26px;
+		text-align: left;
+	}
+
+	.article-modal .text {
+		font-size: 14px !important;
+		line-height: 18px !important;
 	}
 }
 
@@ -469,7 +510,7 @@ nav ul.right i {
 	top: 0 !important;
 }
 
-.article-modal img {
+.article-modal > img {
 	float: left;
 	margin-right: 10px;
 }
@@ -479,7 +520,7 @@ nav ul.right i {
 	font-weight: bold;
 }
 
-.article-modal div:first-child {
+.article-modal > div:first-child {
 	margin-top: 30px;
 	margin-bottom: 20px;
 }
@@ -493,10 +534,16 @@ nav ul.right i {
 	margin: 25px 0;
 }
 
+.article-modal .article-modal-header > img:first-child {
+	float: left;
+	margin-right: 10px;
+}
+
 .article-modal .text {
 	font-family: 'Libre Baskerville', serif;
 	font-size: 20px;
 	line-height: 35px;
+	margin-bottom: 15px;
 }
 
 .article-modal .modal-close {
@@ -510,4 +557,93 @@ nav ul.right i {
 
 .article-modal .divider {
 	margin: 25px 0;
+}
+
+.article-modal .article-modal-footer {
+	padding-bottom: 10px;
+	border-bottom: 1px solid #e0e0e0;
+	margin-bottom: 20px;
+	margin-top: 100px;
+}
+
+.article-modal .article-modal-footer > * {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.article-modal .article-modal-footer .right {
+	height: 62px;
+	padding: 15.5px 0;
+}
+
+.article-modal .article-modal-footer .right > * {
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0;
+	padding: 0 10px;
+}
+
+.article-modal .article-modal-footer .right > *:last-child {
+	padding-right: 0;
+}
+
+.article-modal .article-modal-footer .right img {
+	margin-right: 5px;
+}
+
+.comment {
+	background-color: transparent !important;
+	border-radius: 5px;
+	border: 1px solid #e0e0e0;
+	padding-left: 25px;
+	padding-right: 25px;
+}
+
+.comment .comment-info-header {
+	margin: 0;
+	margin-bottom: 10px;
+}
+
+.comment .comment-info-header * {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.comment .comment-info-header > img {
+	margin-right: 5px;
+}
+
+.comment-section .comment-info-footer > * {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.comment-section .comment-info-footer i {
+	text-align: center;
+	border-radius: 100%;
+	border: 1px solid #6534FF;
+	color: #6534FF;
+	margin-right: 5px;
+}
+
+.comment-section .comment-info-footer .right > * {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.comment-section .comment-form form {
+	padding: 5px 25px;
+	border-radius: 5px;
+	border: 1px solid #e0e0e0;
+	margin-bottom: 20px;
+}
+
+.comment-section .comment-form form input {
+	border-bottom: none;
+	margin: 0;
+}
+
+.comment-section .comment-form form input:focus {
+	border-bottom: none !important;
+	box-shadow: none !important;
 }

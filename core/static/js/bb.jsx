@@ -48,6 +48,51 @@ function Datetime(props) {
 	);
 }
 
+function Comment(props) {
+	const id = props.comment.id;
+	const email = props.comment.email;
+	const text = props.comment.text;
+	const commentor = props.comment.commentor;
+	const datetime = props.comment.datetime;
+	const flaps = props.comment.flaps;
+	const dollars = props.comment.dollars;
+
+	return (
+		<div class="comment mycard">
+			<div class="comment-info-header">
+				<Gravatar email={email} size={40}/>
+				<p>{commentor} · <Datetime datetime={datetime}/></p>
+			</div>
+			<p class="text">{text}</p>
+			<div class="comment-info-footer">
+				<div class="flap-btn">
+					<img src="/static/images/icon-flap.png"/>
+				</div>
+				<span>{numberWithCommas(flaps)}</span>
+				<div class="right">
+					<i class="material-icons">attach_money</i><span>{numberWithCommas(dollars)}</span>
+				</div>
+			</div>
+		</div>
+	);
+}
+
+function CommentSection(props) {
+	const comments = props.comments;
+	const commentItems = comments.map((comment) => <Comment comment={comment} />);
+
+	return (
+		<div class="comment-section">
+			<div class="comment-form">
+				<form>
+					<input type="text" placeholder="Write a comment..."/>
+				</form>
+			</div>
+			{commentItems}
+		</div>
+	);
+}
+
 function Article(props) {
 	const id = props.article.id;
 	const author = props.article.author;
@@ -56,7 +101,7 @@ function Article(props) {
 	const title = props.article.title;
 	const text = props.article.text;
 	const image = props.article.image;
-	const likes = props.article.likes;
+	const dollars = props.article.dollars;
 	const comments = props.article.comments;
 	const flaps = props.article.flaps;
 
@@ -78,10 +123,10 @@ function Article(props) {
 						<img src="/static/images/icon-flap.png"/><span>{numberWithCommas(flaps)}</span>
 					</div>
 					<div class="article-info-detail">
-						<i class="material-icons">attach_money</i><span>{numberWithCommas(likes)}</span>
+						<i class="material-icons">attach_money</i><span>{numberWithCommas(dollars)}</span>
 					</div>
 					<div class="article-info-detail">
-						<img src="/static/images/icon-comment.png"/><span>{numberWithCommas(comments)}</span>
+						<img src="/static/images/icon-comment.png"/><span>{numberWithCommas(comments.length)}</span>
 					</div>
 				</div>
 			</div>
@@ -101,6 +146,23 @@ function Article(props) {
 					<h3>{title}</h3>
 					<div class="divider"></div>
 					<p class="text">{text}</p>
+					<div class="article-modal-footer">
+						<div class="flap-btn flap-btn-large">
+							<img src="/static/images/icon-flap.png"/>
+						</div>
+						<span>{numberWithCommas(flaps)}</span>
+						<div class="right">
+							<div class="article-info-detail">
+								<i class="material-icons">attach_money</i>
+								<p>{numberWithCommas(dollars)}</p>
+							</div>
+							<div class="article-info-detail">
+								<img src="/static/images/icon-comment.png"/>
+								<p>{numberWithCommas(comments.length)}</p>
+							</div>
+						</div>
+					</div>
+					<CommentSection comments={comments} />
 				</div>
 			</div>
 		</div>
@@ -132,8 +194,27 @@ var articles = [
 		title: "EOS, the most most most most most most most most most most most most most most most most most most most most most most most powerful infrastructure for decentralized apps is the global technology and quality leader",
 		text: "Whing is world's first blockchain-based bulletinboard hub. Whing is designed to revolutionize old centralized community and overcome the limitation of blockchain communities all around the world. Anyone can easily apply a reward system to their site by installing our plug-in. Through Whing, users can be rewarded as they write articles and vote each other. Whing is world's first blockchain-based bulletinboard hub. Whing is designed to revolutionize old centralized community and overcome the limitation of blockchain communities all around the world. Anyone can easily apply a reward system to their site by installing our plug-in. Through Whing, users can be rewarded as they write articles and vote each other. Whing is world's first blockchain-based bulletinboard hub. Whing is designed to revolutionize old centralized community and overcome the limitation of blockchain communities all around the world. Anyone can easily apply a reward system to their site by installing our plug-in. Through Whing, users can be rewarded as they write articles and vote each other. Whing is world's first blockchain-based bulletinboard hub. Whing is designed to revolutionize old centralized community and overcome the limitation of blockchain communities all around the world. Anyone can easily apply a reward system to their site by installing our plug-in. Through Whing, users can be rewarded as they write articles and vote each other. Whing is world's first blockchain-based bulletinboard hub. Whing is designed to revolutionize old centralized community and overcome the limitation of blockchain communities all around the world. Anyone can easily apply a reward system to their site by installing our plug-in. Through Whing, users can be rewarded as they write articles and vote each other. Whing is world's first blockchain-based bulletinboard hub. Whing is designed to revolutionize old centralized community and overcome the limitation of blockchain communities all around the world. Anyone can easily apply a reward system to their site by installing our plug-in. Through Whing, users can be rewarded as they write articles and vote each other. Whing is world's first blockchain-based bulletinboard hub. Whing is designed to revolutionize old centralized community and overcome the limitation of blockchain communities all around the world. Anyone can easily apply a reward system to their site by installing our plug-in. Through Whing, users can be rewarded as they write articles and vote each other.",
 		image: "https://images.pexels.com/photos/709552/pexels-photo-709552.jpeg?auto=compress&cs=tinysrgb&h=350",
-		likes: 13221,
-		comments: 67,
+		dollars: 13221,
+		comments: [
+			{
+				id: 1,
+				text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.',
+				commentor: "Soojin Lim",
+				email: "lbs1163@postech.ac.kr",
+				datetime: new Date(2018, 5, 3, 22, 18, 0, 0),
+				flaps: 534,
+				dollars: 43.121,
+			},
+			{
+				id: 2,
+				text: 'It was very useful!',
+				commentor: "Beomsu Lim",
+				email: "lbs1163@postech.ac.kr",
+				datetime: new Date(2018, 5, 10, 0, 55, 0, 0),
+				flaps: 321,
+				dollars: 25.123,
+			},
+		],
 		flaps: 42,
 	},
 	{
@@ -144,8 +225,27 @@ var articles = [
 		title: "Introducing Whing, the world first blockchain-based website plugin with perfect reward system for authors",
 		text: "Whing is world's first blockchain-based bulletinboard hub. Whing is designed to revolutionize old centralized community and overcome the limitation of blockchain communities all around the world. Anyone can easily apply a reward system to their site by installing our plug-in. Through Whing, users can be rewarded as they write articles and vote each other.",
 		image: "https://images.pexels.com/photos/39517/rose-flower-blossom-bloom-39517.jpeg?cs=srgb&dl=bloom-blossom-flora-39517.jpg&fm=jpg",
-		likes: 43121,
-		comments: 23,
+		dollars: 43121,
+		comments: [
+			{
+				id: 3,
+				text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.',
+				commentor: "Soojin Lim",
+				email: "lbs1163@postech.ac.kr",
+				datetime: new Date(2018, 5, 3, 22, 18, 0, 0),
+				flaps: 534,
+				dollars: 43.121,
+			},
+			{
+				id: 4,
+				text: 'It was very useful!',
+				commentor: "Beomsu Lim",
+				email: "lbs1163@postech.ac.kr",
+				datetime: new Date(2018, 5, 10, 0, 55, 0, 0),
+				flaps: 321,
+				dollars: 25.123,
+			},
+		],
 		flaps: 42,
 	},
 	{
@@ -156,8 +256,27 @@ var articles = [
 		title: "Blockchain is the world's leading software platform for digital assets. Offering the largest production",
 		text: "Whing is world's first blockchain-based bulletinboard hub. Whing is designed to revolutionize old centralized community and overcome the limitation of blockchain communities all around the world. Anyone can easily apply a reward system to their site by installing our plug-in. Through Whing, users can be rewarded as they write articles and vote each other.",
 		image: "https://files.allaboutbirds.net/wp-content/uploads/2015/06/prow-featured.jpg",
-		likes: 53412,
-		comments: 42,
+		dollars: 53412,
+		comments: [
+			{
+				id: 5,
+				text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.',
+				commentor: "Soojin Lim",
+				email: "lbs1163@postech.ac.kr",
+				datetime: new Date(2018, 5, 3, 22, 18, 0, 0),
+				flaps: 534,
+				dollars: 43.121,
+			},
+			{
+				id: 6,
+				text: 'It was very useful!',
+				commentor: "Beomsu Lim",
+				email: "lbs1163@postech.ac.kr",
+				datetime: new Date(2018, 5, 10, 0, 55, 0, 0),
+				flaps: 321,
+				dollars: 25.123,
+			},
+		],
 		flaps: 42,
 	},
 	{
@@ -168,8 +287,27 @@ var articles = [
 		title: "EOS, the most powerful infrastructure for decentralized apps is the global technology and quality leader",
 		text: "Whing is world's first blockchain-based bulletinboard hub. Whing is designed to revolutionize old centralized community and overcome the limitation of blockchain communities all around the world. Anyone can easily apply a reward system to their site by installing our plug-in. Through Whing, users can be rewarded as they write articles and vote each other.",
 		image: "http://images.mentalfloss.com/sites/default/files/styles/mf_image_16x9/public/24832-istock-698876630.jpg?itok=g-ZBr_L8&resize=1100x619",
-		likes: 41421,
-		comments: 32,
+		dollars: 41421,
+		comments: [
+			{
+				id: 7,
+				text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.',
+				commentor: "Soojin Lim",
+				email: "lbs1163@postech.ac.kr",
+				datetime: new Date(2018, 5, 3, 22, 18, 0, 0),
+				flaps: 534,
+				dollars: 43.121,
+			},
+			{
+				id: 8,
+				text: 'It was very useful!',
+				commentor: "Beomsu Lim",
+				email: "lbs1163@postech.ac.kr",
+				datetime: new Date(2018, 5, 10, 0, 55, 0, 0),
+				flaps: 321,
+				dollars: 25.123,
+			},
+		],
 		flaps: 42,
 	},
 	{
@@ -180,8 +318,27 @@ var articles = [
 		title: "Introducing Whing, the world first blockchain-based website plugin with perfect reward system for authors",
 		text: "Whing is world's first blockchain-based bulletinboard hub. Whing is designed to revolutionize old centralized community and overcome the limitation of blockchain communities all around the world. Anyone can easily apply a reward system to their site by installing our plug-in. Through Whing, users can be rewarded as they write articles and vote each other.",
 		image: "http://www.krugerpark.co.za/images/1-lion-charge-gc590a.jpg",
-		likes: 53412,
-		comments: 42,
+		dollars: 53412,
+		comments: [
+			{
+				id: 9,
+				text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.',
+				commentor: "Soojin Lim",
+				email: "lbs1163@postech.ac.kr",
+				datetime: new Date(2018, 5, 3, 22, 18, 0, 0),
+				flaps: 534,
+				dollars: 43.121,
+			},
+			{
+				id: 10,
+				text: 'It was very useful!',
+				commentor: "Beomsu Lim",
+				email: "lbs1163@postech.ac.kr",
+				datetime: new Date(2018, 5, 10, 0, 55, 0, 0),
+				flaps: 321,
+				dollars: 25.123,
+			},
+		],
 		flaps: 42,
 	},
 	{
@@ -192,8 +349,27 @@ var articles = [
 		title: "What is block chain? A distributed ledger with trust",
 		text: "Whing is world's first blockchain-based bulletinboard hub. Whing is designed to revolutionize old centralized community and overcome the limitation of blockchain communities all around the world. Anyone can easily apply a reward system to their site by installing our plug-in. Through Whing, users can be rewarded as they write articles and vote each other.",
 		image: "https://cdn.britannica.com/700x450/10/152310-004-AE62B6B8.jpg",
-		likes: 13221,
-		comments: 67,
+		dollars: 13221,
+		comments: [
+			{
+				id: 11,
+				text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.',
+				commentor: "Soojin Lim",
+				email: "lbs1163@postech.ac.kr",
+				datetime: new Date(2018, 5, 3, 22, 18, 0, 0),
+				flaps: 534,
+				dollars: 43.121,
+			},
+			{
+				id: 12,
+				text: 'It was very useful!',
+				commentor: "Beomsu Lim",
+				email: "lbs1163@postech.ac.kr",
+				datetime: new Date(2018, 5, 10, 0, 55, 0, 0),
+				flaps: 321,
+				dollars: 25.123,
+			},
+		],
 		flaps: 42,
 	},
 ];
