@@ -1,0 +1,13 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+	{% include 'core/head.html' %}
+	<body>
+		{% include 'core/header.html' %}
+		<main>
+			{% block content %}
+			{% endblock %}
+		</main>
+	</body>
+</html>

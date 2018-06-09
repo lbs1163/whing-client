@@ -1,0 +1,103 @@
+{% load static %}
+{% load gravatar_tags %}
+
+<header>
+	<ul id="navbar-dropdown" class="dropdown-content">
+		<li><a href="{% url 'mypage' %}">My page</a></li>
+		<li><a href="{% url 'logout' %}">Log out</a></li>
+	</ul>
+	<nav class="white">
+		<div class="nav-wrapper container">
+			<a href="{% url 'index' %}" class="brand-logo"><img src="{% static 'images/logo.png' %}">Whing</a>
+			<a href="#" data-target="side-navbar" class="sidenav-trigger">
+				<i class="material-icons">menu</i>
+			</a>
+			{% if pagename %}
+				<a class="brand-logo center hide-on-med-and-down">{{pagename}}</a>
+			{% endif %}
+			<ul class="right hide-on-med-and-down">
+				{% if user.is_authenticated %}
+				<li>{{user.first_name}} {{user.last_name}}</li>
+				<li>{{ "lbs1163@postech.ac.kr"|gravatar:40 }}</li>
+				<li>
+					<a class="dropdown-trigger" href="#!" data-target="navbar-dropdown">
+						<i class="material-icons">arrow_drop_down</i>
+					</a>
+				</li>
+				{% else %}
+				<li><a class="log-in-modal-trigger" href="#!">Log in</a></li>
+				<li><a class="btn-flat sign-up-modal-trigger" href="#!">Get started</a></li>
+				{% endif %}
+			</ul>
+		</div>
+	</nav>
+
+	<ul class="sidenav" id="side-navbar">
+		{% if user.is_authenticated %}
+		<li><a href="{% url 'mypage' %}">My page</a></li>
+		<li><a href="{% url 'logout' %}">Log out</a></li>
+		{% else %}
+		<li><a class="log-in-modal-trigger" href="#!">Log in</a></li>
+		<li><a class="sign-up-modal-trigger" href="#!">Get started</a></li>
+		{% endif %}
+	</ul>
+</header>
+
+<div id="log-in-modal" class="modal modal-with-tabs">
+	<div class="modal-content">
+		<div class="row">
+			<ul class="tabs">
+				<li class="tab col s6"><a class="active" href="#login">Log in</a></li>
+				<li class="tab col s6"><a href="#signup">Sign up</a></li>
+			</ul>
+			<form action="{% url 'login' %}" method="POST" id="login" class="col s12">
+				{% csrf_token %}
+				<div class="input-field">
+					<input name="email" type="email">
+					<label for="email">Email</label>
+				</div>
+				<div class="input-field">
+					<input name="password" type="password">
+					<label for="password">Password</label>
+				</div>
+				<div class="center">
+					<input type="submit" value="Log in" class="btn"></input>
+				</div>
+			</form>
+			<form id="signup" class="col s12">
+				<div class="input-field">
+					<input name="name" type="text">
+					<label for="name">Name</label>
+				</div>
+				<div class="input-field">
+					<input name="email" type="email">
+					<label for="email">Email</label>
+				</div>
+				<div class="input-field">
+					<input name="password" type="password">
+					<label for="password">Password</label>
+				</div>
+				<div class="center">
+					<a class="btn">Sign up</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script>
+$(document).ready(function(){
+	$('.sidenav').sidenav();
+	$('.modal').modal();
+	$('.tabs').tabs();
+	$(".dropdown-trigger").dropdown({alignment: 'right', coverTrigger: false});
+	$('.log-in-modal-trigger').on("click", function(e) {
+		$('#log-in-modal').modal('open');
+		$('#log-in-modal .tabs').tabs('select', 'login');
+	});
+	$('.sign-up-modal-trigger').on("click", function(e) {
+		$('#log-in-modal').modal('open');
+		$('#log-in-modal .tabs').tabs('select', 'signup');
+	});
+});
+</script>

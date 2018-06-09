@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans');
+
+@font-face {
+    font-family: 'acre-medium';
+    src: url('/static/fonts/acre-medium-webfont.woff2') format('woff2'),
+         url('/static/fonts/acre-medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*
+color palette
+text: #464646
+background-grey: #edf0f2
+line-grey: #e0e0e0
+purple: #6534FF
+*/
+
+* {
+	font-family: 'Nunito Sans', sans-serif;
+	color: #464646;
+}
+
+p {
+	text-align: justify;
+}
+
+html {
+	background-color: #edf0f2;
+}
+
+.brand-logo {
+	font-family: 'acre-medium', 'Nunito Sans', sans-serif;
+}
+
+.brand-logo img {
+	height: 31.5px;
+	margin-right: 10px;
+	position: relative;
+	top: 4px;
+}
+
+.brand-logo.center {
+	font-family: 'Nunito Sans', sans-serif;
+	font-size: 16px;
+}
+
+.btn-flat {
+	border: 1px solid #6534FF;
+	text-transform: none;
+}
+
+.btn {
+	box-shadow: none;
+	text-transform: none;
+	background-color: #6534FF;
+}
+
+.btn:hover {
+	background-color: #6534FF;
+}
+
+.divider {
+	margin-bottom: 20px;
+}
+
+nav.white .brand-logo, nav.white ul a, nav i, nav {
+	color: #464646;
+}
+
+nav ul.right li {
+	vertical-align: middle;
+}
+
+nav ul.right img {
+	border-radius: 100%;
+	height: 64px;
+	width: 64px;
+	padding: 10px;
+	line-height: 64px;
+}
+
+nav ul.right a.dropdown-trigger {
+	padding: 0;
+}
+
+nav ul.right i {
+	margin: 0;
+}
+
+.modal-with-tabs.modal .modal-content {
+	padding: 0;
+}
+
+.modal-with-tabs.modal {
+	color: black;
+	background-color: white;
+	max-width: 400px;
+}
+
+.modal-with-tabs .tabs {
+	height: 70px;
+}
+
+.modal-with-tabs .tabs .tab {
+	height: 70px;
+}
+
+.modal-with-tabs .tabs .tab a {
+	line-height: 70px;
+	background-color: #edf0f2;
+	color: black;
+}
+
+.modal-with-tabs .tabs .tab a.active {
+	color: black;
+	background-color: white;
+	border-top: 2px solid #6534FF;
+}
+
+.modal-with-tabs .tabs .indicator {
+	top: 0;
+	background-color: #6534FF;
+	display: none;
+}
+
+.jumbotron {
+	width: 100%;
+}
+
+.jumbotron h1 {
+	color: black;
+}
+
+.jumbotron p {
+	color: #464646;
+}
+
+.jumbotron#wave {
+	position: absolute;
+	background-color: white;
+	background-image: url('/static/images/wave.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+}
+
+.jumbotron#iphone {
+	position: absolute;
+	background-image: url('/static/images/iphone.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+}
+
+.jumbotron#landing {
+	position: relative;
+}
+
+@media screen and (max-width: 600px) {
+	.jumbotron#landing h1 {
+		font-size: 50px;
+	}
+
+	.jumbotron {
+		height: 500px;
+	}
+
+	.jumbotron#landing {
+		padding-top: 20px;
+	}
+}
+
+@media screen and (min-width: 601px) {
+	.jumbotron {
+		height: 700px;
+	}
+
+	.jumbotron#landing {
+		padding-top: 150px;
+	}
+}
+
+@media screen and (min-width: 993px) {
+	.jumbotron {
+		height: 860px;
+	}
+
+	.jumbotron#landing {
+		padding-top: 150px;
+	}
+}
