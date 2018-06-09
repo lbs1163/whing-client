@@ -1,0 +1,169 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+{% load gravatar_tags %}
+
+{% block content %}
+<div class="container" id="mypage">
+	<div class="row">
+		<div class="col s12 xl4">
+			<div id="profile" class="mycard z-depth-2 center-align">
+				{{ "lbs1163@postech.ac.kr"|gravatar:60 }}
+				<h5>Beomsu Lim</h5>
+				<p class="center-align">lbs1163@postech.ac.kr</p>
+				<div id="profile-sub">
+					<div id="voting-power">
+						<p>Energy</p><!--
+						--><div class="progress">
+							<div class="determinate" style="width: 70%"></div>
+						</div><!--
+						--><p>13,458 / 30,275</p>
+					</div>
+					<div id="account-balance">
+						<p>Account Balance</p><!--
+						--><p>56,253 WNG 30,275 Max.E</p>
+						<div class="right-align">
+							<a id="power-change" class="btn-flat modal-trigger" data-target="power-change-modal">Energy up/down</a>
+						</div>
+					</div>
+					<div id="address">
+						<p>Address</p><!--
+						--><input type="text" value="aD66F77abcCe66EE7EfD5655sFFEcafcccsxaxaxsddasxascasdwwqdas" readonly>
+						<div class="right-align">
+							<a id="copy-address" class="btn-flat">Copy</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col s12 xl8">
+			<div id="joined-sites" class="mycard z-depth-2">
+				<ul class="collection with-header">
+					<li class="collection-header"><h5>Joined Sites</h5></li>
+					<li class="collection-item avatar">
+						<img src="https://api.faviconkit.com/?size=256&url=www.naver.com" class="circle">
+						<span class="title">EOS Stack Overflow</span>
+						<p>Online community for EOS developers to learn and share their programming ...</p>
+						<div class="secondary-content">
+							<p class="grey-text">Lv. 5</p>
+							<div class="progress">
+								<div class="determinate" style="width: 70%"></div>
+							</div>
+						</div>
+					</li>
+					<li class="collection-item avatar">
+						<img src="https://api.faviconkit.com/?size=256&url=www.daum.net" class="circle">
+						<span class="title">EOS Stack Overflow</span>
+						<p>Online community for EOS developers to learn and share their programming ...</p>
+						<div class="secondary-content">
+							<p class="grey-text">Lv. 5</p>
+							<div class="progress">
+								<div class="determinate" style="width: 70%"></div>
+							</div>
+						</div>
+					</li>
+					<li class="collection-item avatar">
+						<img src="https://api.faviconkit.com/?size=256&url=lemons.poapper.com" class="circle">
+						<span class="title">EOS Stack Overflow</span>
+						<p>Online community for EOS developers to learn and share their programming ...</p>
+						<div class="secondary-content">
+							<p class="grey-text">Lv. 5</p>
+							<div class="progress">
+								<div class="determinate" style="width: 70%"></div>
+							</div>
+						</div>
+					</li>
+					<li class="collection-item avatar">
+						<img src="https://api.faviconkit.com/?size=256&url=www.stackoverflow.com" class="circle">
+						<span class="title">EOS Stack Overflow</span>
+						<p>Online community for EOS developers to learn and share their programming ...</p>
+						<div class="secondary-content">
+							<p class="grey-text">Lv. 5</p>
+							<div class="progress">
+								<div class="determinate" style="width: 70%"></div>
+							</div>
+						</div>
+					</li>
+					<li class="collection-item avatar">
+						<img src="https://api.faviconkit.com/?size=256&url=www.google.com" class="circle">
+						<span class="title">EOS Stack Overflow</span>
+						<p>Online community for EOS developers to learn and share their programming ...</p>
+						<div class="secondary-content">
+							<p class="grey-text">Lv. 5</p>
+							<div class="progress">
+								<div class="determinate" style="width: 70%"></div>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div class="center">
+					<a id="find-sites" class="btn">+</a>
+				</div>
+			</div>
+			<div id="owned-sites" class="mycard z-depth-2">
+				<ul class="collection with-header">
+					<li class="collection-header"><h5>Owned Sites</h5></li>
+					<li class="collection-item avatar">
+						<img src="https://api.faviconkit.com/?size=256&url=www.google.com" class="circle">
+						<span class="title">EOS Stack Overflow</span>
+						<p>Online community for EOS developers to learn and share their programming ...</p>
+						<p class="secondary-content"><a href="{% url 'site' %}">Admin</a></p>
+					</li>
+				</ul>
+				<div class="center">
+					<a href="{% url 'install' %}" class="btn">+</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="power-change-modal" class="modal modal-with-tabs">
+	<div class="modal-content">
+		<div class="row">
+			<ul class="tabs">
+				<li class="tab col s6"><a class="active" href="#powerup">Energy up</a></li>
+				<li class="tab col s6"><a href="#powerdown">Energy down</a></li>
+			</ul>
+			<form id="powerup" class="col s12">
+				<h5>Increase Max Energy</h5>
+				<p>By using some of WNG, you can increase maximum limit of your energy.</p>
+				<div class="input-field">
+					<input name="wing" type="number" step="0.001" min='0.001'>
+					<label for="wing">WNG</label>
+				</div>
+				<div class="center">
+					<input type="submit" value="Energy up" class="btn"></input>
+				</div>
+			</form>
+			<form id="powerdown" class="col s12">
+				<h5>Decrease Max Energy</h5>
+				<p>You can get WNG by decreasing your max energy. It takes 9 weeks to be done completely.</p>
+				<div class="input-field">
+					<input name="wpr" type="number" step="0.001" min='0.001'>
+					<label for="wpr">Max Energy</label>
+				</div>
+				<div class="center">
+					<a class="btn">Energy down</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script>
+$(document).ready(function(){
+	$('.modal').modal();
+	$('#copy-address').on("click", function(e) {
+		var input = $("#address input").first();
+		input.select();
+		document.execCommand('copy');
+		M.toast({html: 'Copied!'});
+	});
+	$('#find-sites').on("click", function(e) {
+		alert("Sorry, finding sites for joining is not available now ;(");
+	});
+});
+</script>
+
+{% endblock %}
