@@ -1,0 +1,29 @@
+{
+  "name": "whing-client",
+  "version": "1.0.0",
+  "description": "* Soojin Lim",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx babel ./core/static/js/bb.jsx --out-file ./core/static/js/bb-compiled.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lbs1163/whing-client.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lbs1163/whing-client/issues"
+  },
+  "homepage": "https://github.com/lbs1163/whing-client#readme",
+  "dependencies": {
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1"
+  }
+}
