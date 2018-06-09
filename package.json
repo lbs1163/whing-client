@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/lbs1163/whing-client#readme",
   "dependencies": {
+    "eosjs": "^14.1.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0"
   },
