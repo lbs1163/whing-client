@@ -234,6 +234,38 @@ nav ul.right i {
 	}
 }
 
+#problems {
+	background-color: #f8f9fd;
+	padding-top: 60px;
+	padding-bottom: 60px;
+}
+
+#problems h1 {
+	font-size: 30px;
+	font-weight: 600;
+	color: #454646;
+	margin-top: 0;
+	margin-bottom: 5px;
+}
+
+#problems .divider {
+	width: 100px;
+	margin: auto;
+	margin-top: 5px;
+	margin-bottom: 40px;
+	border-bottom: 3px solid #6534FF;
+}
+
+#problems img {
+	width: 60% !important;
+	margin-bottom: 20px;
+}
+
+#problems .mycard {
+	padding: 30px;
+	height: 415px;
+}
+
 #mypage, #install {
 	margin-top: 15px;
 }
