@@ -35,3 +35,6 @@ def site(request):
 
 def bb(request):
 	return render(request, "core/bb.html", {"pagename": "Board"})
+
+def iframe(request):
+	return render(request, "core/iframe.html", {})

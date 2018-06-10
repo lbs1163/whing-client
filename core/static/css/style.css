@@ -392,7 +392,7 @@ nav ul.right i {
 	padding-top: 20px;
 }
 
-.article {
+.article, .article-form {
 	max-width: 900px;
 	margin-left: auto;
 	margin-right: auto;

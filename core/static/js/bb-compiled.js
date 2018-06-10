@@ -109,9 +109,11 @@ function Comment(props) {
 }
 
 function CommentSection(props) {
+	const index = props.index;
 	const comments = props.comments;
+	const commentSubmit = props.commentSubmit;
 	const commentItems = comments.map(comment => React.createElement(Comment, { comment: comment }));
-
+	console.log('asdf', commentSubmit);
 	return React.createElement(
 		"div",
 		{ "class": "comment-section" },
@@ -120,196 +122,205 @@ function CommentSection(props) {
 			{ "class": "comment-form" },
 			React.createElement(
 				"form",
-				null,
-				React.createElement("input", { type: "text", placeholder: "Write a comment..." })
+				{ onSubmit: commentSubmit },
+				React.createElement("input", { id: "comment" + index, type: "text", placeholder: "Write a comment..." })
 			)
 		),
 		commentItems
 	);
 }
 
-function Article(props) {
-	const id = props.article.id;
-	const author = props.article.author;
-	const email = props.article.email;
-	const datetime = props.article.datetime;
-	const title = props.article.title;
-	const text = props.article.text;
-	const image = props.article.image;
-	const dollars = props.article.dollars;
-	const comments = props.article.comments;
-	const flaps = props.article.flaps;
+class Article extends React.Component {
+	componentDidMount() {
+		$(".modal").modal();
+	}
 
-	return React.createElement(
-		"div",
-		{ "class": "article row mycard z-depth-2" },
-		React.createElement(
+	render() {
+		const index = this.props.index;
+		const id = this.props.article.id;
+		const author = this.props.article.author;
+		const email = this.props.article.email;
+		const datetime = this.props.article.datetime;
+		const title = this.props.article.title;
+		const text = this.props.article.text;
+		const image = this.props.article.image;
+		const dollars = this.props.article.dollars;
+		const comments = this.props.article.comments;
+		const flaps = this.props.article.flaps;
+		const commentSubmit = this.props.commentSubmit;
+		console.log('asdfasdf', commentSubmit);
+
+		return React.createElement(
 			"div",
-			{ "class": "thumbnail" },
-			React.createElement("div", { "class": "square-image-wrapper", style: { backgroundImage: 'url(' + image + ')' } })
-		),
-		React.createElement(
-			"div",
-			{ "class": "article-info" },
+			{ "class": "article row mycard z-depth-2" },
 			React.createElement(
 				"div",
-				{ "class": "article-info-header" },
-				React.createElement(Gravatar, { email: email, size: 40 }),
-				React.createElement(
-					"p",
-					null,
-					author,
-					" \xB7 ",
-					React.createElement(Datetime, { datetime: datetime })
-				)
-			),
-			React.createElement(
-				"h4",
-				{ href: "#article-modal-" + id, "class": "block-with-text modal-trigger" },
-				title
-			),
-			React.createElement(
-				"p",
-				{ "class": "truncate grey-text" },
-				text
+				{ "class": "thumbnail" },
+				React.createElement("div", { "class": "square-image-wrapper", style: { backgroundImage: 'url(' + image + ')' } })
 			),
 			React.createElement(
 				"div",
-				{ "class": "article-info-footer" },
+				{ "class": "article-info" },
 				React.createElement(
 					"div",
-					{ "class": "article-info-detail" },
-					React.createElement("img", { src: "http://whing.io/static/images/icon-flap.png" }),
-					React.createElement(
-						"span",
-						null,
-						numberWithCommas(flaps)
-					)
-				),
-				React.createElement(
-					"div",
-					{ "class": "article-info-detail" },
-					React.createElement(
-						"i",
-						{ "class": "material-icons" },
-						"attach_money"
-					),
-					React.createElement(
-						"span",
-						null,
-						numberWithCommas(dollars)
-					)
-				),
-				React.createElement(
-					"div",
-					{ "class": "article-info-detail" },
-					React.createElement("img", { src: "http://whing.io/static/images/icon-comment.png" }),
-					React.createElement(
-						"span",
-						null,
-						numberWithCommas(comments.length)
-					)
-				)
-			)
-		),
-		React.createElement(
-			"div",
-			{ id: "article-modal-" + id, "class": "article-modal modal" },
-			React.createElement(
-				"div",
-				{ "class": "modal-content" },
-				React.createElement(
-					"div",
-					null,
-					React.createElement(
-						"a",
-						{ href: "#!", "class": "modal-close" },
-						React.createElement(
-							"i",
-							{ "class": "material-icons" },
-							"arrow_back"
-						),
-						React.createElement(
-							"span",
-							null,
-							"Back to Board"
-						)
-					)
-				),
-				React.createElement(
-					"div",
-					{ "class": "article-modal-header" },
-					React.createElement(Gravatar, { email: email, size: 47 }),
+					{ "class": "article-info-header" },
+					React.createElement(Gravatar, { email: email, size: 40 }),
 					React.createElement(
 						"p",
 						null,
 						author,
 						" \xB7 ",
 						React.createElement(Datetime, { datetime: datetime })
-					),
-					React.createElement(
-						"p",
-						{ "class": "grey-text" },
-						"Lv. 7"
 					)
 				),
 				React.createElement(
-					"h3",
-					null,
+					"h4",
+					{ href: "#article-modal-" + id, "class": "block-with-text modal-trigger" },
 					title
 				),
-				React.createElement("div", { "class": "divider" }),
 				React.createElement(
 					"p",
-					{ "class": "text" },
+					{ "class": "truncate grey-text" },
 					text
 				),
 				React.createElement(
 					"div",
-					{ "class": "article-modal-footer" },
+					{ "class": "article-info-footer" },
 					React.createElement(
 						"div",
-						{ "class": "flap-btn flap-btn-large" },
-						React.createElement("img", { src: "http://whing.io/static/images/icon-flap.png" })
-					),
-					React.createElement(
-						"span",
-						null,
-						numberWithCommas(flaps)
-					),
-					React.createElement(
-						"div",
-						{ "class": "right" },
+						{ "class": "article-info-detail" },
+						React.createElement("img", { src: "http://whing.io/static/images/icon-flap.png" }),
 						React.createElement(
-							"div",
-							{ "class": "article-info-detail" },
+							"span",
+							null,
+							numberWithCommas(flaps)
+						)
+					),
+					React.createElement(
+						"div",
+						{ "class": "article-info-detail" },
+						React.createElement(
+							"i",
+							{ "class": "material-icons" },
+							"attach_money"
+						),
+						React.createElement(
+							"span",
+							null,
+							numberWithCommas(dollars)
+						)
+					),
+					React.createElement(
+						"div",
+						{ "class": "article-info-detail" },
+						React.createElement("img", { src: "http://whing.io/static/images/icon-comment.png" }),
+						React.createElement(
+							"span",
+							null,
+							numberWithCommas(comments.length)
+						)
+					)
+				)
+			),
+			React.createElement(
+				"div",
+				{ id: "article-modal-" + id, "class": "article-modal modal" },
+				React.createElement(
+					"div",
+					{ "class": "modal-content" },
+					React.createElement(
+						"div",
+						null,
+						React.createElement(
+							"a",
+							{ href: "#!", "class": "modal-close" },
 							React.createElement(
 								"i",
 								{ "class": "material-icons" },
-								"attach_money"
+								"arrow_back"
 							),
 							React.createElement(
-								"p",
+								"span",
 								null,
-								numberWithCommas(dollars)
+								"Back to Board"
 							)
+						)
+					),
+					React.createElement(
+						"div",
+						{ "class": "article-modal-header" },
+						React.createElement(Gravatar, { email: email, size: 47 }),
+						React.createElement(
+							"p",
+							null,
+							author,
+							" \xB7 ",
+							React.createElement(Datetime, { datetime: datetime })
+						),
+						React.createElement(
+							"p",
+							{ "class": "grey-text" },
+							"Lv. 7"
+						)
+					),
+					React.createElement(
+						"h3",
+						null,
+						title
+					),
+					React.createElement("div", { "class": "divider" }),
+					React.createElement(
+						"p",
+						{ "class": "text" },
+						text
+					),
+					React.createElement(
+						"div",
+						{ "class": "article-modal-footer" },
+						React.createElement(
+							"div",
+							{ "class": "flap-btn flap-btn-large" },
+							React.createElement("img", { src: "http://whing.io/static/images/icon-flap.png" })
+						),
+						React.createElement(
+							"span",
+							null,
+							numberWithCommas(flaps)
 						),
 						React.createElement(
 							"div",
-							{ "class": "article-info-detail" },
-							React.createElement("img", { src: "http://whing.io/static/images/icon-comment.png" }),
+							{ "class": "right" },
 							React.createElement(
-								"p",
-								null,
-								numberWithCommas(comments.length)
+								"div",
+								{ "class": "article-info-detail" },
+								React.createElement(
+									"i",
+									{ "class": "material-icons" },
+									"attach_money"
+								),
+								React.createElement(
+									"p",
+									null,
+									numberWithCommas(dollars)
+								)
+							),
+							React.createElement(
+								"div",
+								{ "class": "article-info-detail" },
+								React.createElement("img", { src: "http://whing.io/static/images/icon-comment.png" }),
+								React.createElement(
+									"p",
+									null,
+									numberWithCommas(comments.length)
+								)
 							)
 						)
-					)
-				),
-				React.createElement(CommentSection, { comments: comments })
+					),
+					React.createElement(CommentSection, { index: index, commentSubmit: commentSubmit, comments: comments })
+				)
 			)
-		)
-	);
+		);
+	}
 }
 
 class Board extends React.Component {
@@ -324,11 +335,46 @@ class Board extends React.Component {
 
 	formSubmit(e) {
 		e.preventDefault();
+		const articles = this.state.articles.slice();
+		const newArticle = {
+			id: articles.length,
+			author: "Beomsu Lim",
+			email: "lbs1163@postech.ac.kr",
+			datetime: new Date(),
+			title: $("input#title").val(),
+			text: $("textarea#content").val(),
+			image: "https://scontent-hkg3-1.xx.fbcdn.net/v/t1.0-9/17426280_1442991145771343_1426106330517761213_n.jpg?_nc_cat=0&_nc_eui2=AeGBgSdqp5Ppfyu81BIBq5rVCfJWJt5FOfeOxx-q6w3GXTFxrlqAc20DBmR-MefkZDJvQ1PRxMddj3-ZtKLEEVH4Oy2dMP4fq2fVL484uXjcig&oh=21b8a060c3c5817b0606b38881091e11&oe=5B78DF75",
+			dollars: 0,
+			comments: [],
+			flaps: 0
+		};
+		$("input#title").val('');
+		$("textarea#content").val('');
+		articles.unshift(newArticle);
+		this.setState({ articles: articles });
+		$(".modal").modal('close');
+	}
+
+	commentSubmit(e, i) {
+		e.preventDefault();
+		const articles = this.state.articles.slice();
+		const text = $("input#comment" + i).val();
+		$("input#comment" + i).val('');
+		const comment = {
+			text: text,
+			commentor: "Beomsu Lim",
+			email: "lbs1163@postech.ac.kr",
+			datetime: new Date(),
+			flaps: 0,
+			dollars: 0
+		};
+		articles[i].comments.unshift(comment);
+		this.setState({ articles: articles });
 	}
 
 	render() {
 		const articles = this.state.articles;
-		const articleItems = articles.map(article => React.createElement(Article, { article: article }));
+		const articleItems = articles.map((article, index) => React.createElement(Article, { index: index, commentSubmit: e => this.commentSubmit(e, index), article: article }));
 		return React.createElement(
 			"div",
 			{ "class": "board container" },
@@ -344,7 +390,57 @@ class Board extends React.Component {
 			React.createElement(
 				"div",
 				{ id: "article-form", "class": "article-modal modal" },
-				React.createElement("form", { onSubmit: this.formSubmit })
+				React.createElement(
+					"div",
+					{ "class": "container" },
+					React.createElement(
+						"div",
+						null,
+						React.createElement(
+							"a",
+							{ href: "#!", "class": "modal-close" },
+							React.createElement(
+								"i",
+								{ "class": "material-icons" },
+								"arrow_back"
+							),
+							React.createElement(
+								"span",
+								null,
+								"Back to Board"
+							)
+						)
+					),
+					React.createElement(
+						"form",
+						{ onSubmit: e => this.formSubmit(e) },
+						React.createElement(
+							"div",
+							{ "class": "input-field" },
+							React.createElement("input", { id: "title", type: "text" }),
+							React.createElement(
+								"label",
+								{ "for": "title" },
+								"Title"
+							)
+						),
+						React.createElement(
+							"div",
+							{ "class": "input-field" },
+							React.createElement("textarea", { id: "content", type: "text", "class": "materialize-textarea" }),
+							React.createElement(
+								"label",
+								{ "for": "content" },
+								"Content"
+							)
+						),
+						React.createElement(
+							"div",
+							null,
+							React.createElement("input", { type: "submit", value: "Write Article", "class": "btn" })
+						)
+					)
+				)
 			),
 			articleItems
 		);
@@ -354,26 +450,5 @@ class Board extends React.Component {
 if (typeof articles == 'undefined') {
 	articles = [];
 }
-
-var head = document.getElementsByTagName('head')[0];
-
-function appendCSS(linke) {
-	var link = document.createElement('link');
-	link.rel = 'stylesheet';
-	link.href = linke;
-	head.appendChild(link);
-}
-
-function appendJS(link) {
-	var script = document.createElement('script');
-	script.src = link;
-	head.appendChild(script);
-}
-
-appendJS("https://code.jquery.com/jquery-3.2.1.min.js");
-appendCSS('https://fonts.googleapis.com/icon?family=Material+Icons');
-appendCSS('https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css');
-appendJS("https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js");
-appendCSS('http://whing.io/static/css/style.css');
 
 ReactDOM.render(React.createElement(Board, { articles: articles }), document.getElementById('1d9f3f0ew'));

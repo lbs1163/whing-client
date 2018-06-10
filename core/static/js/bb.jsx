@@ -78,14 +78,16 @@ function Comment(props) {
 }
 
 function CommentSection(props) {
+	const index = props.index;
 	const comments = props.comments;
+	const commentSubmit = props.commentSubmit;
 	const commentItems = comments.map((comment) => <Comment comment={comment} />);
-
+	console.log('asdf', commentSubmit);
 	return (
 		<div class="comment-section">
 			<div class="comment-form">
-				<form>
-					<input type="text" placeholder="Write a comment..."/>
+				<form onSubmit={commentSubmit}>
+					<input id={"comment" + index} type="text" placeholder="Write a comment..."/>
 				</form>
 			</div>
 			{commentItems}
@@ -93,80 +95,89 @@ function CommentSection(props) {
 	);
 }
 
-function Article(props) {
-	const id = props.article.id;
-	const author = props.article.author;
-	const email = props.article.email;
-	const datetime = props.article.datetime;
-	const title = props.article.title;
-	const text = props.article.text;
-	const image = props.article.image;
-	const dollars = props.article.dollars;
-	const comments = props.article.comments;
-	const flaps = props.article.flaps;
+class Article extends React.Component {
+	componentDidMount() {
+		$(".modal").modal();
+	}
 
-	return (
-		<div class="article row mycard z-depth-2">
-			<div class="thumbnail">
-				<div class="square-image-wrapper" style={{backgroundImage: 'url(' + image + ')'}}>
-				</div>
-			</div>
-			<div class="article-info">
-				<div class="article-info-header">
-					<Gravatar email={email} size={40}/>
-					<p>{author} · <Datetime datetime={datetime}/></p>
-				</div>
-				<h4 href={"#article-modal-"+id} class="block-with-text modal-trigger">{title}</h4>
-				<p class="truncate grey-text">{text}</p>
-				<div class="article-info-footer">
-					<div class="article-info-detail">
-						<img src="http://whing.io/static/images/icon-flap.png"/><span>{numberWithCommas(flaps)}</span>
-					</div>
-					<div class="article-info-detail">
-						<i class="material-icons">attach_money</i><span>{numberWithCommas(dollars)}</span>
-					</div>
-					<div class="article-info-detail">
-						<img src="http://whing.io/static/images/icon-comment.png"/><span>{numberWithCommas(comments.length)}</span>
+	render() {
+		const index = this.props.index;
+		const id = this.props.article.id;
+		const author = this.props.article.author;
+		const email = this.props.article.email;
+		const datetime = this.props.article.datetime;
+		const title = this.props.article.title;
+		const text = this.props.article.text;
+		const image = this.props.article.image;
+		const dollars = this.props.article.dollars;
+		const comments = this.props.article.comments;
+		const flaps = this.props.article.flaps;
+		const commentSubmit = this.props.commentSubmit;
+		console.log('asdfasdf', commentSubmit);
+
+		return (
+			<div class="article row mycard z-depth-2">
+				<div class="thumbnail">
+					<div class="square-image-wrapper" style={{backgroundImage: 'url(' + image + ')'}}>
 					</div>
 				</div>
-			</div>
-			<div id={"article-modal-"+id} class="article-modal modal">
-				<div class="modal-content">
-					<div>
-						<a href="#!" class="modal-close">
-							<i class="material-icons">arrow_back</i>
-							<span>Back to Board</span>
-						</a>
-					</div>
-					<div class="article-modal-header">
-						<Gravatar email={email} size={47}/>
+				<div class="article-info">
+					<div class="article-info-header">
+						<Gravatar email={email} size={40}/>
 						<p>{author} · <Datetime datetime={datetime}/></p>
-						<p class="grey-text">Lv. 7</p>
 					</div>
-					<h3>{title}</h3>
-					<div class="divider"></div>
-					<p class="text">{text}</p>
-					<div class="article-modal-footer">
-						<div class="flap-btn flap-btn-large">
-							<img src="http://whing.io/static/images/icon-flap.png"/>
+					<h4 href={"#article-modal-"+id} class="block-with-text modal-trigger">{title}</h4>
+					<p class="truncate grey-text">{text}</p>
+					<div class="article-info-footer">
+						<div class="article-info-detail">
+							<img src="http://whing.io/static/images/icon-flap.png"/><span>{numberWithCommas(flaps)}</span>
 						</div>
-						<span>{numberWithCommas(flaps)}</span>
-						<div class="right">
-							<div class="article-info-detail">
-								<i class="material-icons">attach_money</i>
-								<p>{numberWithCommas(dollars)}</p>
-							</div>
-							<div class="article-info-detail">
-								<img src="http://whing.io/static/images/icon-comment.png"/>
-								<p>{numberWithCommas(comments.length)}</p>
-							</div>
+						<div class="article-info-detail">
+							<i class="material-icons">attach_money</i><span>{numberWithCommas(dollars)}</span>
+						</div>
+						<div class="article-info-detail">
+							<img src="http://whing.io/static/images/icon-comment.png"/><span>{numberWithCommas(comments.length)}</span>
 						</div>
 					</div>
-					<CommentSection comments={comments} />
+				</div>
+				<div id={"article-modal-"+id} class="article-modal modal">
+					<div class="modal-content">
+						<div>
+							<a href="#!" class="modal-close">
+								<i class="material-icons">arrow_back</i>
+								<span>Back to Board</span>
+							</a>
+						</div>
+						<div class="article-modal-header">
+							<Gravatar email={email} size={47}/>
+							<p>{author} · <Datetime datetime={datetime}/></p>
+							<p class="grey-text">Lv. 7</p>
+						</div>
+						<h3>{title}</h3>
+						<div class="divider"></div>
+						<p class="text">{text}</p>
+						<div class="article-modal-footer">
+							<div class="flap-btn flap-btn-large">
+								<img src="http://whing.io/static/images/icon-flap.png"/>
+							</div>
+							<span>{numberWithCommas(flaps)}</span>
+							<div class="right">
+								<div class="article-info-detail">
+									<i class="material-icons">attach_money</i>
+									<p>{numberWithCommas(dollars)}</p>
+								</div>
+								<div class="article-info-detail">
+									<img src="http://whing.io/static/images/icon-comment.png"/>
+									<p>{numberWithCommas(comments.length)}</p>
+								</div>
+							</div>
+						</div>
+						<CommentSection index={index} commentSubmit={commentSubmit} comments={comments} />
+					</div>
 				</div>
 			</div>
-		</div>
-	);
+		);
+	}
 }
 
 class Board extends React.Component {
@@ -181,19 +192,73 @@ class Board extends React.Component {
 
 	formSubmit(e) {
 		e.preventDefault();
+		const articles = this.state.articles.slice();
+		const newArticle = {
+			id: articles.length,
+			author: "Beomsu Lim",
+			email: "lbs1163@postech.ac.kr",
+			datetime: new Date(),
+			title: $("input#title").val(),
+			text: $("textarea#content").val(),
+			image: "https://scontent-hkg3-1.xx.fbcdn.net/v/t1.0-9/17426280_1442991145771343_1426106330517761213_n.jpg?_nc_cat=0&_nc_eui2=AeGBgSdqp5Ppfyu81BIBq5rVCfJWJt5FOfeOxx-q6w3GXTFxrlqAc20DBmR-MefkZDJvQ1PRxMddj3-ZtKLEEVH4Oy2dMP4fq2fVL484uXjcig&oh=21b8a060c3c5817b0606b38881091e11&oe=5B78DF75",
+			dollars: 0,
+			comments: [],
+			flaps: 0,
+		};
+		$("input#title").val('');
+		$("textarea#content").val('');
+		articles.unshift(newArticle);
+		this.setState({articles: articles});
+		$(".modal").modal('close');
+	}
+
+	commentSubmit(e, i) {
+		e.preventDefault();
+		const articles = this.state.articles.slice();
+		const text = $("input#comment" + i).val();
+		$("input#comment" + i).val('');
+		const comment = {
+			text: text,
+			commentor: "Beomsu Lim",
+			email: "lbs1163@postech.ac.kr",
+			datetime: new Date(),
+			flaps: 0,
+			dollars: 0,
+		};
+		articles[i].comments.unshift(comment);
+		this.setState({articles: articles});
 	}
 
 	render() {
 		const articles = this.state.articles;
-		const articleItems = articles.map((article) => <Article article={article}/>);
+		const articleItems = articles.map((article, index) => <Article index={index} commentSubmit={(e) => this.commentSubmit(e, index)} article={article}/>);
 		return (
 			<div class="board container">
 				<div class="article-form mycard z-depth-2">
 					<h4 href="#article-form" class="modal-trigger">Add your article!</h4>
 				</div>
 				<div id="article-form" class="article-modal modal">
-					<form onSubmit={this.formSubmit}>
-					</form>
+					<div class="container">
+						<div>
+							<a href="#!" class="modal-close">
+								<i class="material-icons">arrow_back</i>
+								<span>Back to Board</span>
+							</a>
+						</div>
+						<form onSubmit={(e) => this.formSubmit(e)}>
+							<div class="input-field">
+								<input id="title" type="text" />
+								<label for="title">Title</label>
+							</div>
+							<div class="input-field">
+								<textarea id="content" type="text" class="materialize-textarea"></textarea>
+								<label for="content">Content</label>
+							</div>
+							<div>
+								<input type="submit" value="Write Article" class="btn"/>
+							</div>
+						</form>
+					</div>
 				</div>
 				{articleItems}
 			</div>
@@ -204,27 +269,6 @@ class Board extends React.Component {
 if (typeof articles == 'undefined') {
 	articles = [];
 }
-
-var head = document.getElementsByTagName('head')[0];
-
-function appendCSS(linke) {
-	var link = document.createElement('link');
-	link.rel = 'stylesheet';
-	link.href = linke;
-	head.appendChild(link);
-}
-
-function appendJS(link) {
-	var script = document.createElement('script');
-	script.src = link;
-	head.appendChild(script);
-}
-
-appendJS("https://code.jquery.com/jquery-3.2.1.min.js");
-appendCSS('https://fonts.googleapis.com/icon?family=Material+Icons');
-appendCSS('https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css');
-appendJS("https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js");
-appendCSS('http://whing.io/static/css/style.css');
 
 ReactDOM.render(
 	<Board articles={articles} />,

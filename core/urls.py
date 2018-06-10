@@ -11,4 +11,5 @@ urlpatterns = [
 	path('install/', views.install, name='install'),
 	path('site/', views.site, name='site'),
 	path('bb/', views.bb, name='bb'),
+	path('1d9f3f0ew/', views.iframe, name='iframe'),
 ]
