@@ -205,6 +205,27 @@ if (!articles) {
 	articles = [];
 }
 
+var head = document.getElementsByTagName('head')[0];
+
+function appendCSS(linke) {
+	var link = document.createElement('link');
+	link.rel = 'stylesheet';
+	link.href = linke;
+	head.appendChild(link);
+}
+
+function appendJS(link) {
+	var script = document.createElement('script');
+	script.src = link;
+	head.appendChild(link);
+}
+
+appendJS("https://code.jquery.com/jquery-3.2.1.min.js");
+appendCSS('https://fonts.googleapis.com/icon?family=Material+Icons');
+appendCSS('https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css');
+appendJS("https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js");
+appendCSS('http://whing.io/static/css/style.css');
+
 ReactDOM.render(
 	<Board articles={articles} />,
 	document.getElementById('1d9f3f0ew')
