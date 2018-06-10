@@ -201,7 +201,7 @@ class Board extends React.Component {
 	}
 }
 
-if (articles == undefined) {
+if (typeof articles == 'undefined') {
 	articles = [];
 }
 
