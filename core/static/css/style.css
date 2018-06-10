@@ -30,6 +30,10 @@ html {
 	background-color: #edf0f2;
 }
 
+.invisible {
+	display: none !important;
+}
+
 .progress .determinate {
 	background-color: #6534FF;
 }
