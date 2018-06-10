@@ -367,7 +367,7 @@ function appendCSS(linke) {
 function appendJS(link) {
 	var script = document.createElement('script');
 	script.src = link;
-	head.appendChild(link);
+	head.appendChild(script);
 }
 
 appendJS("https://code.jquery.com/jquery-3.2.1.min.js");
