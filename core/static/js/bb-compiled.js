@@ -344,7 +344,7 @@ class Board extends React.Component {
 			React.createElement(
 				"div",
 				{ id: "article-form", "class": "article-modal modal" },
-				React.createElement("form", { onSubmit: formSubmit })
+				React.createElement("form", { onSubmit: this.formSubmit })
 			),
 			articleItems
 		);

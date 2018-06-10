@@ -192,7 +192,7 @@ class Board extends React.Component {
 					<h4 href="#article-form" class="modal-trigger">Add your article!</h4>
 				</div>
 				<div id="article-form" class="article-modal modal">
-					<form onSubmit={formSubmit}>
+					<form onSubmit={this.formSubmit}>
 					</form>
 				</div>
 				{articleItems}
